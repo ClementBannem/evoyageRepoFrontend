@@ -1,0 +1,123 @@
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<div class="col-sm-6" style="margin-top: 18px;">
+	<div ngbDropdown class="dropdown-success dropdown open">
+		<button class="btn btn-success" (click)="ver(e, eModal)">
+			<i class="icofont icofont-plus-circle"></i>ajouter un evenement</button>
+	</div>
+</div>
+<app-card [title]="'Les derniers dossiers'" [classHeader]="true"
+	[blockClass]="'table-border-style'">
+
+<div class="table-responsive">
+	<table class="table">
+		<thead class="bg-primary">
+			<tr>
+				<td></td>
+				<td>#</td>
+				<td>type d'événement</td>
+				<td>date événement</td>
+				<td>heure début</td>
+				<td>heure fin</td>
+				<td>prix</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let e of evenmt">
+				<td>
+					<button style="padding: 1px 2px;" class="btn btn-warning">modifier</button>
+					<button style="padding: 1px 2px;" class="btn btn-danger">supprimer</button>
+				</td>
+				<td>{{e.idE}}</td>
+				<td>{{e.typeE}}</td>
+				<td>{{e.dateE}}</td>
+				<td>{{e.heure_deb}}</td>
+				<td>{{e.heure_fin}}</td>
+				<td>{{e.prixE}}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+</app-card>
+
+<ng-template #eModal>
+<div class="modal-header" style="background-color: #28e1bd;">
+	<h4 class="modal-title">Evenement</h4>
+	<button type="button" class="btn cancel" data-dismiss="modal"
+		aria-label="Close">
+		<span aria-hidden="true">&times;</span>
+	</button>
+</div>
+<div class="modal-body">
+	<form name="form" (ngSubmit)="f.form.valid && saveE()" #f="ngForm"
+		novalidate>
+		<div style="font-size: 13px" id="fiche" class="card-body row">
+
+			<div class="col-sm-10" style="font-size: 13px">
+
+				<div class="row spacer">
+					<div class="col-auto">
+						<label style="font-family: verdana">type d'événement:</label>
+
+						<div class="input-group mb">
+							<div class="input-group-prepend">
+								<div class="input-group-text">
+									<i class="icofont icofont-map-marker"></i>
+								</div>
+							</div>
+							<select style="font-size: 13px; font-family: verdana" type="text"
+								name="typeE" id="escale" class="form-control"
+								[(ngModel)]="events.typeE" #typeE="ngModel" required>
+								<option>Veuillez Choisir</option>
+								<option value="Avec">Avec</option>
+								<option value="Sans">Sans</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-auto">
+						<label style="font-family: verdana">Date d'évévenement:</label> <input
+							style="font-size: 13px; font-family: verdana" type="date"
+							class="form-control" id="dateE" name="dateE"
+							[(ngModel)]="events.dateE" #dateE="ngModel" required>
+					</div>
+					<div class="col-auto">
+						<label style="font-family: verdana">Heure de début</label> <input
+							style="font-size: 13px; font-family: verdana" type="time"
+							class="form-control" id="heure_deb" name="heure_deb"
+							[(ngModel)]="events.heure_deb" #heure_deb="ngModel" required>
+
+					</div>
+				</div>
+				<div class="row spacer">
+					<div class="col-auto">
+						<label style="font-family: verdana">heure de fin:</label> <input
+							style="font-size: 13px; font-family: verdana" type="time"
+							class="form-control" id="heure_fin" name="heure_fin"
+							[(ngModel)]="events.heure_fin" #heure_fin="ngModel" required>
+					</div>
+					<div class="col-auto">
+						<label style="font-family: verdana">prix</label> <input
+							style="font-size: 13px; font-family: verdana" type="numeric"
+							class="form-control" id="prixE" name="prixE"
+							[(ngModel)]="events.prixE" #prixE="ngModel" required>
+
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<div class="modal-footer">
+			<button type="button"
+				style="height: 30px; text-align: center; padding-top: 5px; margin-top: 10px; margin-bottom: 10px"
+				class="btn btn-secondary" data-dismiss="modal">Close</button>
+			<div class="row">
+				<button class="btn btn-primary"
+					style="height: 30px; text-align: center; padding-top: 5px; margin-top: 10px; margin-bottom: 10px">Ajouter
+					événement</button>
+			</div>
+
+
+		</div>
+	</form>
+</div>
+</ng-template>

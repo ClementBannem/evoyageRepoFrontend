@@ -1,0 +1,96 @@
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<div class="col-sm-6" style="margin-top: 18px;">
+	<div ngbDropdown class="dropdown-success dropdown open">
+		<button class="btn btn-success" (click)="ver(o, oModal)">
+			<i class="icofont icofont-plus-circle"></i>ajouter une offre
+		</button>
+	</div>
+</div>
+<app-card [title]="'Les derniers dossiers'" [classHeader]="true"
+	[blockClass]="'table-border-style'">
+
+<div class="table-responsive">
+	<table class="table">
+		<thead class="bg-primary">
+			<tr>
+				<td></td>
+				<td>#</td>
+				<td>Desciption</td>
+				<td>date début</td>
+				<td>date fin</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let o of offres">
+				<td>
+					<button style="padding: 1px 2px;" class="btn btn-warning">modifier</button>
+					<button style="padding: 1px 2px;" class="btn btn-danger">supprimer</button>
+				</td>
+				<td>{{o.idO}}</td>
+				<td>{{o.libelle}}</td>
+				<td>{{o.date_debut}}</td>
+				<td>{{o.date_fin}}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+</app-card>
+
+<ng-template #oModal>
+<div class="modal-header" style="background-color: #28e1bd;">
+	<h4 class="modal-title">Evenement</h4>
+	<button type="button" class="btn cancel" data-dismiss="modal"
+		aria-label="Close">
+		<span aria-hidden="true">&times;</span>
+	</button>
+</div>
+<div class="modal-body">
+	<form name="form" (ngSubmit)="f.form.valid && saveO()" #f="ngForm"
+		novalidate>
+		<div style="font-size: 13px" id="fiche" class="card-body row">
+
+			<div class="col-sm-10" style="font-size: 13px">
+
+				<div class="row spacer">
+					<div class="col-auto">
+						<label style="font-family: verdana">Decription</label>
+
+						<div class="input-group mb">
+							<div class="input-group-prepend">
+								<div class="input-group-text">
+									<i class="icofont icofont-map-marker"></i>
+								</div>
+							</div>
+							<input style="font-size: 13px; font-family: verdana" type="text"
+								class="form-control" id="libelle" name="libelle"
+								[(ngModel)]="offre.libelle" #libelle="ngModel" required>
+						</div>
+					</div>
+					<div class="col-auto">
+						<label style="font-family: verdana">Date début</label> <input
+							style="font-size: 13px; font-family: verdana" type="date"
+							class="form-control" id="date_debut" name="date_debut"
+							[(ngModel)]="offre.date_debut" #date_debut="ngModel" required>
+					</div>
+					<div class="col-auto">
+						<label style="font-family: verdana">date fin</label> <input
+							style="font-size: 13px; font-family: verdana" type="date"
+							class="form-control" id="date_fin" name="date_fin"
+							[(ngModel)]="offre.date_fin" #date_fin="ngModel" required>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<button type="button"
+				style="height: 30px; text-align: center; padding-top: 5px; margin-top: 10px; margin-bottom: 10px"
+				class="btn btn-secondary" data-dismiss="modal">Close</button>
+			<div class="row">
+				<button class="btn btn-primary"
+					style="height: 30px; text-align: center; padding-top: 5px; margin-top: 10px; margin-bottom: 10px">Ajouter
+					événement</button>
+			</div>
+		</div>
+	</form>
+</div>
+</ng-template>

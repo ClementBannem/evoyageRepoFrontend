@@ -1,0 +1,565 @@
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+<div class="row">
+<div class="col-sm-6" style="margin-top: 18px;">
+								<div ngbDropdown class="dropdown-success dropdown open">
+									<button ngbDropdownToggle class="btn btn-success dropdown-toggle waves-effect waves-light" type="button" id="dropdown-3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Ajouter un Transport</button>
+									<div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdown-3" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
+										<a class="dropdown-item waves-light waves-effect" style="cursor: pointer;" (click)="verA(a, aModal)">Avion</a> 
+										<a class="dropdown-item waves-light waves-effect" style="cursor: pointer;" (click)="verAC(ac, acModal)">AutoCar</a>
+										<a class="dropdown-item waves-light waves-effect" style="cursor: pointer;" (click)="ver(b, bModal)">Bateau</a>
+										<a class="dropdown-item waves-light waves-effect" style="cursor: pointer;" (click)="verT(t, tModal)" >Train</a>
+									</div>
+								</div>
+							</div>
+	<div class="col-sm-12">
+		<!-- Basic table card start -->
+		<app-card class="icofont icofont-map-marker"
+			[title]="'Ajout Transport'" [classHeader]="true"
+			[blockClass]="'table-border-style'">
+
+		<div class="table">
+				<ng-template #bModal>
+			<div class="modal-header" style="background-color: #28e1bd;">
+				<h4 class="modal-title">Bateau</h4>
+				<button type="button" class="btn cancel" data-dismiss="modal" (click)="cancelAction()" aria-label="Close">
+                 <span aria-hidden="true">&times;</span></button>
+			</div>
+			<div class="modal-body">
+				<form name="form" (ngSubmit)="f.form.valid && save()" #f="ngForm"
+					novalidate>
+					<div style="font-size: 13px" id="fiche" class="card-body row">
+
+						<div class="col-sm-10" style="font-size: 13px">
+
+							<div class="row spacer">
+								<div class="col-auto">
+									<label style="font-family: verdana">Escale (Avec/Sans):</label>
+
+									<div class="input-group mb">
+										<div class="input-group-prepend">
+											<div class="input-group-text">
+												<i class="icofont icofont-map-marker"></i>
+											</div>
+										</div>
+										<select style="font-size: 13px; font-family: verdana"
+											type="text" name="type" id="escale" class="form-control"
+											[(ngModel)]="bateau.escale" #escale="ngModel" required>
+											<option>Veuillez Choisir</option>
+											<option value="Avec">Avec</option>
+											<option value="Sans">Sans</option>
+										</select>
+									</div>
+								</div>
+								<div class="col-auto">
+									<label style="font-family: verdana">Date de Départ:</label> <input
+										style="font-size: 13px; font-family: verdana" type="date"
+										class="form-control" id="date_Depart" name="date_Depart"
+										[(ngModel)]="bateau.date_Depart" #date_Depart="ngModel"
+										required>
+								</div>
+								<div class="col-auto">
+									<label style="font-family: verdana">Heure de Départ</label> <input
+										style="font-size: 13px; font-family: verdana" type="time"
+										class="form-control" id="heure_Depart" name="heure_Depart"
+										[(ngModel)]="bateau.heure_Depart" #heure_Depart="ngModel"
+										required>
+
+								</div>
+							</div>
+							<div class="row spacer">
+								<div class="col-auto">
+									<label style="font-family: verdana">Date d'arrivée:</label> <input
+										style="font-size: 13px; font-family: verdana" type="date"
+										class="form-control" id="date_Arrive" name="date_Arrive"
+										[(ngModel)]="bateau.date_Arrive" #date_Arrive="ngModel"
+										required>
+								</div>
+								<div class="col-auto">
+									<label style="font-family: verdana">Heure D'arrivée</label> <input
+										style="font-size: 13px; font-family: verdana" type="time"
+										class="form-control" id="heure_Arrive" name="heure_Arrive"
+										[(ngModel)]="bateau.heure_Arrive" #heure_Arrive="ngModel"
+										required>
+
+								</div>
+								<div class="col-auto">
+									<label style="font-family: verdana">Prix:</label>
+									<div class="input-group mb">
+										<div class="input-group-prepend">
+											<div class="input-group-text"></div>
+										</div>
+										<input style="font-size: 13px; font-family: verdana"
+											type="text" class="form-control" id="prix" name="prix"
+											[(ngModel)]="bateau.prix" #prix="ngModel" required>
+									</div>
+								</div>
+							</div>
+							<div class="row spacer">
+								<div class="col-auto">
+									<label style="font-family: verdana">Quai de depart:</label> <input
+										style="font-size: 13px; font-family: verdana" type="text"
+										class="form-control" id="quai_Depart" name="quai_Depart"
+										[(ngModel)]="bateau.quai_Depart" #quai_Depart="ngModel"
+										required>
+
+								</div>
+								<div class="col-auto">
+									<label style="font-family: verdana">Quai d'arrivé:</label>
+									<div class="input-group mb">
+										<div class="input-group-prepend">
+											<div class="input-group-text"></div>
+										</div>
+										<input style="font-size: 13px; font-family: verdana"
+											type="text" class="form-control" id="quai_Arrive"
+											name="quai_Arrive" [(ngModel)]="bateau.quai_Arrive"
+											#quai_Arrive="ngModel" required>
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+					
+			<div class="modal-footer">
+				        <button type="button" style="height: 30px; text-align: center; padding-top: 5px;margin-top: 10px; margin-bottom: 10px" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <div class="row">
+						<button class="btn btn-primary"
+							style="height: 30px; text-align: center; padding-top: 5px;margin-top: 10px; margin-bottom: 10px">Ajouter
+							voyage</button>
+					</div>
+				
+				
+			</div>
+			</form>
+			</div>
+			</ng-template>
+			
+			<!-- Avionnnn -->
+			
+			
+				<ng-template #aModal>
+			<div class="modal-header" style="background-color: #28e1bd;">
+				<h4 class="modal-title">Avion</h4>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                 <span aria-hidden="true">&times;</span></button>
+			</div>
+			<div class="modal-body">
+				<form name="form" (ngSubmit)="fAv.form.valid && saveAv()" #fAv="ngForm"
+					novalidate>
+					<div style="font-size: 13px" id="fiche" class="card-body row">
+          
+            <div class="col-sm-10" style="font-size: 13px">
+            
+              <div class="row spacer">
+                <div class="col-auto">
+                  <label style="font-family: verdana">Escale (Avec/Sans):</label>
+                
+                  <div class="input-group mb">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text"><i class="icofont icofont-map-marker"></i></div>
+                    </div>
+                    <select style="font-size: 13px;font-family: verdana" type="text" name="type" id="escale" class="form-control"
+									 [(ngModel)]="avion.escale" #escale="ngModel" required>
+										<option value="escale">Avec</option>
+										<option value="escale">Sans</option></select>
+                  </div>
+                </div>
+                <div class="col-auto">
+                  <label style="font-family: verdana">Départ:</label>
+                    <input style="font-size: 13px;font-family: verdana" type="date" class="form-control" id="date_Depart" placeholder="date_Depart"
+                           name="date_Depart" [(ngModel)]="avion.date_Depart" #date_Depart="ngModel"
+										required>
+                </div>
+                <div class="col-auto">
+                  <label style="font-family: verdana">A</label>
+                 
+                    <input style="font-size: 13px;font-family: verdana" type="time" class="form-control" id="heure_Depart" placeholder="heure_Depart"
+                     name="heure_Depart" [(ngModel)]="avion.heure_Depart" #heure_Depart="ngModel"
+										required>
+                  
+                </div>
+              </div>
+              <div class="row spacer">
+                <div class="col-auto">
+                  <label style="font-family: verdana">Arrivé:</label>
+                    <input style="font-size: 13px;font-family: verdana" type="date" class="form-control" id="date_Arrive" placeholder="date_Arrive"
+                    name="date_Arrive" [(ngModel)]="avion.date_Arrive" #date_Arrive="ngModel"
+										required>
+                </div>
+                <div class="col-auto">
+                  <label style="font-family: verdana">A</label>
+                 
+                    <input style="font-size: 13px;font-family: verdana" type="time" class="form-control" id="heure_Arrive" placeholder="heure_Arrive"
+                    name="heure_Arrive" [(ngModel)]="avion.heure_Arrive" #heure_Arrive="ngModel"
+										required>
+                  
+                </div>
+                <div class="col-auto">
+                  <label style="font-family: verdana">Prix:</label>
+                  <div class="input-group mb">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text"></div>
+                    </div>
+                    <input style="font-size: 13px;font-family: verdana" type="text" class="form-control" id="prix" placeholder="prix"
+                    name="prix" [(ngModel)]="avion.prix" #prix="ngModel"
+										required>
+                  </div>
+                </div>
+              </div>
+              <div class="row spacer">
+                <div class="col-auto">
+                  <label style="font-family: verdana">Aeroport de depart:</label>
+					    <input style="font-size: 13px;font-family: verdana" type="text" class="form-control" id="Aeroport_Depart" 
+					     name="Aeroprt_Depart" [(ngModel)]="avion.aeroport_Depart" #aeroport_Depart="ngModel"
+										required>
+
+                </div>
+                <div class="col-auto">
+                  <label style="font-family: verdana">Aeroport d'arrivé:</label>
+                  <div class="input-group mb">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text"></div>
+                    </div>
+                    <input style="font-size: 13px;font-family: verdana" type="text" class="form-control" id="Aeroport_Arrive"
+                    name="Aeroport_Arrive" [(ngModel)]="avion.aeroport_Arrive" #aeroport_Arrive="ngModel"
+										required>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+					
+			
+			<div class="modal-footer">
+			<div class="row">
+						<button class="btn btn-primary"
+							style="height: 30px; text-align: center; padding-top: 5px;margin-top: 10px; margin-bottom: 10px">Ajouter
+							voyage</button>
+					</div>
+			</div>
+				</form>
+			</div>
+			</ng-template>
+			
+			<!-- end -->
+			
+			<!-- AUTOCAR -->
+			
+					<ng-template #acModal>
+			<div class="modal-header" style="background-color: #28e1bd;">
+				<h4 class="modal-title">Autocar</h4>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                 <span aria-hidden="true">&times;</span></button>
+			</div>
+			<div class="modal-body">
+			 <form name="form" (ngSubmit)="f.form.valid && saveAC()" #f="ngForm" novalidate>
+          <div style="font-size: 13px" id="fiche" class="card-body row">
+          
+            <div class="col-sm-10" style="font-size: 13px">
+            
+              <div class="row spacer">
+                <div class="col-auto">
+                  <label style="font-family: verdana">escale:</label>
+                
+                  <div class="input-group mb">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text"><i class="icofont icofont-map-marker"></i></div>
+                    </div>
+                    <select style="font-size: 13px;font-family: verdana" type="text" name="type" id="escale" class="form-control"
+									 [(ngModel)]="autocar.escale" #escale="ngModel" required>
+										<option value="escale">true</option>
+										<option value="escale">false</option></select>
+                  </div>
+                </div>
+                <div class="col-auto">
+                  <label style="font-family: verdana">Départ:</label>
+                    <input style="font-size: 13px;font-family: verdana" type="date" class="form-control" id="date_Depart" placeholder="date_Depart"
+                           name="date_Depart" [(ngModel)]="autocar.date_Depart" #date_Depart="ngModel"
+										required>
+                </div>
+                <div class="col-auto">
+                  <label style="font-family: verdana">A</label>
+                 
+                    <input style="font-size: 13px;font-family: verdana" type="time" class="form-control" id="heure_Depart" placeholder="heure_Depart"
+                     name="heure_Depart" [(ngModel)]="autocar.heure_Depart" #heure_Depart="ngModel"
+										required>
+                  
+                </div>
+              </div>
+              <div class="row spacer">
+                <div class="col-auto">
+                  <label style="font-family: verdana">Arrivé:</label>
+                    <input style="font-size: 13px;font-family: verdana" type="date" class="form-control" id="date_Arrive" placeholder="date_Arrive"
+                    name="date_Arrive" [(ngModel)]="autocar.date_Arrive" #date_Arrive="ngModel"
+										required>
+                </div>
+                <div class="col-auto">
+                  <label style="font-family: verdana">A</label>
+                 
+                    <input style="font-size: 13px;font-family: verdana" type="time" class="form-control" id="heure_Arrive" placeholder="heure_Arrive"
+                    name="heure_Arrive" [(ngModel)]="autocar.heure_Arrive" #heure_Arrive="ngModel"
+										required>
+                  
+                </div>
+                <div class="col-auto">
+                  <label style="font-family: verdana">Prix:</label>
+                  <div class="input-group mb">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text"></div>
+                    </div>
+                    <input style="font-size: 13px;font-family: verdana" type="text" class="form-control" id="prix" placeholder="prix"
+                    name="prix" [(ngModel)]="autocar.prix" #prix="ngModel"
+										required>
+                  </div>
+                </div>
+              </div>
+              <div class="row spacer">
+                <div class="col-auto">
+                  <label style="font-family: verdana">Gare auto de depart:</label>
+					    <input style="font-size: 13px;font-family: verdana" type="text" class="form-control" id="quai_Depart"
+					     name="quai_Depart" [(ngModel)]="autocar.gareAC_Depart" #gareAC_Depart="ngModel"
+										required>
+
+                </div>
+                <div class="col-auto">
+                  <label style="font-family: verdana">Gare auto d'arrivé:</label>
+                  <div class="input-group mb">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text"></div>
+                    </div>
+                    <input style="font-size: 13px;font-family: verdana" type="text" class="form-control" id="quai_Arrive"
+                    name="quai_Arrive" [(ngModel)]="autocar.gareAC_Arrive" #gareAC_Arrive="ngModel"
+										required>
+                  </div>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+       	<div class="modal-footer">
+			<div class="row">
+						<button class="btn btn-primary"
+							style="height: 30px; text-align: center; padding-top: 5px;margin-top: 10px; margin-bottom: 10px">Ajouter
+							voyage</button>
+					</div>
+			</div>
+				</form>
+			</div>
+			</ng-template>
+			<!-- end -->
+			
+			<!-- TRAIN -->
+			
+			<ng-template #tModal>
+			<div class="modal-header" style="background-color: #28e1bd;">
+				<h4 class="modal-title">Train</h4>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                 <span aria-hidden="true">&times;</span></button>
+			</div>
+			<div class="modal-body">
+		<form name="form" (ngSubmit)="f.form.valid && saveT()" #f="ngForm" novalidate>
+          <div style="font-size: 13px" id="fiche" class="card-body row">
+          
+            <div class="col-sm-10" style="font-size: 13px">
+            
+              <div class="row spacer">
+                <div class="col-auto">
+                  <label style="font-family: verdana">escale:</label>
+                
+                  <div class="input-group mb">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text"><i class="icofont icofont-map-marker"></i></div>
+                    </div>
+                    <select style="font-size: 13px;font-family: verdana" type="text" name="type" id="escale" class="form-control"
+									 [(ngModel)]="train.escale" #escale="ngModel" required>
+										<option value="escale">true</option>
+										<option value="escale">false</option></select>
+                  </div>
+                </div>
+                <div class="col-auto">
+                  <label style="font-family: verdana">Départ:</label>
+                    <input style="font-size: 13px;font-family: verdana" type="date" class="form-control" id="date_Depart" placeholder="date_Depart"
+                           name="date_Depart" [(ngModel)]="train.date_Depart" #date_Depart="ngModel"
+										required>
+                </div>
+                <div class="col-auto">
+                  <label style="font-family: verdana">A</label>
+                 
+                    <input style="font-size: 13px;font-family: verdana" type="time" class="form-control" id="heure_Depart" placeholder="heure_Depart"
+                     name="heure_Depart" [(ngModel)]="train.heure_Depart" #heure_Depart="ngModel"
+										required>
+                  
+                </div>
+              </div>
+              <div class="row spacer">
+                <div class="col-auto">
+                  <label style="font-family: verdana">Arrivé:</label>
+                    <input style="font-size: 13px;font-family: verdana" type="date" class="form-control" id="date_Arrive" placeholder="date_Arrive"
+                    name="date_Arrive" [(ngModel)]="train.date_Arrive" #date_Arrive="ngModel"
+										required>
+                </div>
+                <div class="col-auto">
+                  <label style="font-family: verdana">A</label>
+                 
+                    <input style="font-size: 13px;font-family: verdana" type="time" class="form-control" id="heure_Arrive" placeholder="heure_Arrive"
+                    name="heure_Arrive" [(ngModel)]="train.heure_Arrive" #heure_Arrive="ngModel"
+										required>
+                  
+                </div>
+                <div class="col-auto">
+                  <label style="font-family: verdana">Prix:</label>
+                  <div class="input-group mb">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text"></div>
+                    </div>
+                    <input style="font-size: 13px;font-family: verdana" type="text" class="form-control" id="prix" placeholder="prix"
+                    name="prix" [(ngModel)]="train.prix" #prix="ngModel"
+										required>
+                  </div>
+                </div>
+              </div>
+              <div class="row spacer">
+                <div class="col-auto">
+                  <label style="font-family: verdana">Gare de depart:</label>
+					    <input style="font-size: 13px;font-family: verdana" type="text" class="form-control" id="quai_Depart"
+					     name="quai_Depart" [(ngModel)]="train.gare_Depart" #gare_Depart="ngModel"
+										required>
+
+                </div>
+                <div class="col-auto">
+                  <label style="font-family: verdana">Gare d'arrivé:</label>
+                  <div class="input-group mb">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text"></div>
+                    </div>
+                    <input style="font-size: 13px;font-family: verdana" type="text" class="form-control" id="quai_Arrive"
+                    name="quai_Arrive" [(ngModel)]="train.gare_Arrive" #gare_Arrive="ngModel"
+										required>
+                  </div>
+                </div>
+          
+              </div>
+            </div>
+          </div>
+          
+       	<div class="modal-footer">
+			<div class="row">
+						<button class="btn btn-primary"
+							style="height: 30px; text-align: center; padding-top: 5px;margin-top: 10px; margin-bottom: 10px">Ajouter
+							voyage</button>
+					</div>
+			</div>
+				</form>
+			</div>
+			</ng-template>
+			<!-- end -->
+			<form>
+				<div style="font-size: 13px" id="fiche" class="card-body row">
+
+					<div class="col-sm-12" style="font-size: 13px">
+						<div class="form-group row">
+							
+							<div class="col-sm-3">
+								<label style="font-family: verdana">Titre:</label>
+								<div style="font-size: 13px" class="input-group mb">
+									<div class="input-group-prepend">
+										<div class="input-group-text"></div>
+									</div>
+									<input style="font-size: 13px" type="text" class="form-control"
+										id="adresse" placeholder="Titre">
+								</div>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+			</form>
+			<!-- tableau -->
+			
+		</div>
+		</app-card>
+		
+		<!-- affiche bateau -->
+		
+		<app-card [title]="'Les derniers dossiers'" [classHeader]="true" [blockClass]="'table-border-style'">
+      
+      <div class="table-responsive">
+        <table class="table">
+          <thead class="bg-primary">
+<tr>
+							<td></td>
+							<td>#</td>
+							<td>date départ</td>
+							<td>date d'arrivée</td>
+							<td>heure départ</td>
+							<td>heuer d'arrivée</td>
+							<td>escale</td>
+							<td>prix</td>
+							<td>quai départ</td>
+							<td>quai arrivé</td>
+						</tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let b of bateaux" (click)="ver(b, bModal)">
+						<td>
+							<button style="padding: 1px 2px;" class="btn btn-warning">modifier</button>
+							<button style="padding: 1px 2px;" class="btn btn-danger">supprimer</button>
+						</td>
+						    <td>{{b.id}}</td>
+							<td>{{b.date_Depart}}</td>
+							<td>{{b.date_Arrive}}</td>
+							<td>{{b.heure_Depart}}</td>
+							<td>{{b.heure_Arrive}}</td>
+							<td>{{b.escale}}</td>
+							<td>{{b.prix}}</td>
+							<td>{{b.quai_Depart}}</td>
+							<td>{{b.quai_Arrive}}</td>
+						
+					</tr>
+          </tbody>
+        </table>
+      </div>
+    </app-card>
+	</div>
+</div>
+
+<!--<div class="m-x-auto p-a-2" style="width: 300px">
+				<table class="table table-sm table-striped table-inverse table-hover center">
+					<thead>
+						<tr>
+							<td></td>
+							<td>#</td>
+							<td>date départ</td>
+							<td>date d'arrivée</td>
+							<td>heure départ</td>
+							<td>heuer d'arrivée</td>
+							<td>escale</td>
+							<td>prix</td>
+							<td>quai départ</td>
+							<td>quai arrivé</td>
+						</tr>
+					</thead>
+					<tr *ngFor="let b of bateau">
+						<td>
+							<button style="padding: 1px 2px;" class="btn btn-warning">modifier</button>
+							<button style="padding: 1px 2px;" class="btn btn-danger">supprimer</button>
+						</td>
+						    <td>{{b.id}}</td>
+							<td>{{b.date_depart}}</td>
+							<td>{{b.date_arrive}}</td>
+							<td>{{b.heure_depart}}</td>
+							<td>{{b.heure_arrive}}</td>
+							<td>{{b.escale}}</td>
+							<td>{{b.prix}}</td>
+							<td>{{b.quai_depart}}</td>
+							<td>{{b.quai_arrive}}</td>
+						
+					</tr>
+				</table>
+			</div>
+-->
+
+
+
+
