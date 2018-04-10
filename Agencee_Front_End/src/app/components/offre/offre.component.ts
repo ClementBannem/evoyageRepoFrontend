@@ -12,13 +12,14 @@ import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 export class OffreComponent implements OnInit {
   offre:Offre = new Offre();
   o:Offre[];
-  offres: Offre[];
+  offres: Offre[]; //liste des offres
   constructor(public router: Router, private modalService: NgbModal, private offreService: OffreService) { }
 
-  ngOnInit() {
+  ngOnInit():void {
+    this.getOffre();
   }
   
-  ver(offres: Offre, modal) {
+  ver(offre: Offre, modal) {
     o => this.o = o;
     this.modalService.open(modal, {size: 'lg'});
   }
@@ -30,6 +31,14 @@ export class OffreComponent implements OnInit {
   
   getOffre() {
      this.offreService.getOffre().then(offres => this.offres = offres);
+  }
+  
+  deleteOffres(ofre){
+    this.offreService.deleteOffre(ofre.idO).subscribe((data)=>{
+      this.offres.splice(this.offres.indexOf(ofre),1);
+    },(error)=>{
+      console.log(error);
+    });
   }
 
 }

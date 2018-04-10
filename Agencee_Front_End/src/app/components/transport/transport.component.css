@@ -37,3 +37,106 @@
 .dropdown:hover .dropbtn {
     background-color: #3e8e41;
 }
+
+autocars {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#autocars td, #autocars th {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+#autocars tr:nth-child(even){background-color: white;}
+
+#autocars tr:hover {background-color: #ddd;}
+
+#autocars th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #1abc9c;
+    color: white;
+    text-align: center;
+}
+
+avions {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#avions td, #avions th {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+#avions tr:nth-child(even){background-color: white;}
+
+#avions tr:hover {background-color: #ddd;}
+
+#avions th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #1abc9c;
+    color: white;
+    text-align: center;
+}
+
+trains {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#trains td, #trains th {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+#trains tr:nth-child(even){background-color: white;}
+
+#trains tr:hover {background-color: #ddd;}
+
+#trains th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #1abc9c;
+    color: white;
+    text-align: center;
+}
+
+bateaux {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#bateaux td, #bateaux th {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+#bateaux tr:nth-child(even){background-color: white;}
+
+#bateaux tr:hover {background-color: #ddd;}
+
+#bateaux th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #1abc9c;
+    color: white;
+    text-align: center;
+}
+
+
+

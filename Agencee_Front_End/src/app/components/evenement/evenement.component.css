@@ -37,3 +37,32 @@
 .dropdown:hover .dropbtn {
     background-color: #3e8e41;
 }
+
+
+evenements {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#evenements td, #evenements th {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+#evenements tr:nth-child(even){background-color: white;}
+
+#evenements tr:hover {background-color: #ddd;}
+
+#evenements th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #1abc9c;
+    color: white;
+    text-align: center;
+}
+
+
+

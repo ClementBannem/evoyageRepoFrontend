@@ -20,9 +20,12 @@ import {AuthService} from './services/auth.service';
 import { AutocarService } from "./services/autocar.service";
 import { AvionService } from "./services/avion.service";
 import { BateauService } from "./services/bateau.service";
+import { CampingService } from "./services/camping.service";
 import {ClientService} from "./services/client.service";
 import { EvenementService } from "./services/evenement.service";
+import { GiteService } from "./services/gite.service";
 import { OffreService } from "./services/offre.service";
+import { ResidenceHoteliereService } from "./services/residence-hoteliere.service";
 import { TrainService } from "./services/train.service";
 import {UrlPermission} from './urlPermission/url.permission';
 import { PathLocationStrategy } from "@angular/common";
@@ -36,7 +39,7 @@ import { LocationStrategy } from "@angular/common";
     AdminLayoutComponent,
     AuthLayoutComponent,
     BreadcrumbsComponent,
-    TitleComponent,    
+    TitleComponent,
     
         
 
@@ -52,7 +55,8 @@ import { LocationStrategy } from "@angular/common";
     routing
   ],
   exports: [ScrollModule],
-  providers: [AuthService, ClientService,BateauService, AvionService,OffreService, AutocarService, TrainService,EvenementService, AccountService, UrlPermission,
+  providers: [AuthService, ClientService,BateauService, AvionService,OffreService, AutocarService
+    , TrainService,EvenementService, AccountService, UrlPermission,GiteService,CampingService,ResidenceHoteliereService,
     {provide: LocationStrategy, useClass: PathLocationStrategy}
   ],
   bootstrap: [AppComponent]

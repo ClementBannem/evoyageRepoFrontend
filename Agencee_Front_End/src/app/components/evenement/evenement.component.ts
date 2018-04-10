@@ -17,7 +17,8 @@ events:Evenement = new Evenement();
   
   constructor(public router: Router, private modalService: NgbModal, private evenementService: EvenementService) { }
 
-  ngOnInit() {
+  ngOnInit():void {
+    this.getEvenements();
   }
   
   ver(events: Evenement, modal) {
@@ -32,6 +33,18 @@ events:Evenement = new Evenement();
   
   getEvenements() {
      this.evenementService.getEvenement().then(evenmt => this.evenmt = evenmt);
+  }
+  
+  deleteEvenement(ev){
+    this.evenementService.deleteEvenement(ev.idE).subscribe((data)=>{
+      this.evenmt.splice(this.evenmt.indexOf(ev),1);
+    },(error)=>{
+      console.log(error);
+    });
+  }
+  
+  goBack(): void {
+    window.location.replace('/evenement');
   }
 
 }

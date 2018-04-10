@@ -66,6 +66,10 @@ export const AppRoutes: Routes = [
       path: 'offre',
       loadChildren: './components/offre/offre.module#OffreModule'
     },
+     {
+      path: 'hebergement',
+      loadChildren: './components/hebergement/hebergement.module#HebergementModule'
+    },
   ]
 },  {
   path: '**',

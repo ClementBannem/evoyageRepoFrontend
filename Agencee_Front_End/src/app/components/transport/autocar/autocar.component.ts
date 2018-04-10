@@ -9,16 +9,24 @@ import { Router } from "@angular/router";
   styleUrls: ['./autocar.component.css']
 })
 export class AutocarComponent implements OnInit {
-
-   autocar:AutoCar = new AutoCar();
+  autocars: AutoCar[];
+  autocar:AutoCar = new AutoCar();
+  
+  errorMessage: string;
+  
   constructor(public autocarService: AutocarService, public router: Router) { }
 
-  ngOnInit() {
+  ngOnInit():void {
+    this.getAutocars();
   }
   
   save(){
     this.autocarService.createAutocar(this.autocar).subscribe(data =>{
       this.router.navigate(['/dashboard'])
     });
+  }
+  
+  getAutocars(){
+    this.autocarService.getAutocars().then(autocars => this.autocars = autocars);
   }
 }
