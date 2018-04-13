@@ -25,28 +25,28 @@
 		<app-card class="icofont icofont-map-marker"
 			[title]="'Ajout Hebergement'" [classHeader]="true"
 			[blockClass]="'table-border-style'">
-			
-			<form>
-				<div style="font-size: 13px" id="fiche" class="card-body row">
 
-					<div class="col-sm-12" style="font-size: 13px">
-						<div class="form-group row">
+		<form>
+			<div style="font-size: 13px" id="fiche" class="card-body row">
 
-							<div class="col-sm-3">
-								<label style="font-family: verdana">Titre:</label>
-								<div style="font-size: 13px" class="input-group mb">
-									<div class="input-group-prepend">
-										<div class="input-group-text"></div>
-									</div>
-									<input style="font-size: 13px" type="text" class="form-control"
-										id="adresse" placeholder="Titre">
+				<div class="col-sm-12" style="font-size: 13px">
+					<div class="form-group row">
+
+						<div class="col-sm-3">
+							<label style="font-family: verdana">Titre:</label>
+							<div style="font-size: 13px" class="input-group mb">
+								<div class="input-group-prepend">
+									<div class="input-group-text"></div>
 								</div>
+								<input style="font-size: 13px" type="text" class="form-control"
+									id="adresse" placeholder="Titre">
 							</div>
-
 						</div>
+
 					</div>
 				</div>
-			</form>
+			</div>
+		</form>
 
 		<div class="table">
 
@@ -56,12 +56,14 @@
 			<div class="modal-header" style="background-color: #28e1bd;">
 				<h4 class="modal-title">Gite</h4>
 				<button type="button" class="btn cancel" data-dismiss="modal"
-					(click)="cancelAction()" aria-label="Close">
+					aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
 			<div class="modal-body">
-				<form name="form" (ngSubmit)="f.form.valid && saveGite()"
+				<form name="form"
+					(ngSubmit)="f.form.valid && saveGite({title:'Confirmation', msg:'Hebergement ajouté avec succès'
+				, timeout: 5000, theme:'bootstrap', position:'bottom-right', type:'success'})"
 					#f="ngForm" novalidate>
 					<div style="font-size: 13px" id="fiche" class="card-body row">
 
@@ -95,7 +97,7 @@
 									<label style="font-family: verdana">Pays</label> <select
 										name="pays" id="pays" class="form-control"
 										[(ngModel)]="gite.pays" #pays="ngModel" required>
-										
+
 										<option value="France">France</option>
 
 									</select>
@@ -310,12 +312,14 @@
 			<div class="modal-header" style="background-color: #28e1bd;">
 				<h4 class="modal-title">Camping</h4>
 				<button type="button" class="btn cancel" data-dismiss="modal"
-					(click)="cancelAction()" aria-label="Close">
+					aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
 			<div class="modal-body">
-				<form name="form" (ngSubmit)="f.form.valid && saveCamping()"
+				<form name="form"
+					(ngSubmit)="f.form.valid && saveCamping({title:'Confirmation', msg:'Hebergement ajouté avec succès'
+				, timeout: 5000, theme:'bootstrap', position:'bottom-right', type:'success'})"
 					#f="ngForm" novalidate>
 					<div style="font-size: 13px" id="fiche" class="card-body row">
 
@@ -349,7 +353,7 @@
 									<label style="font-family: verdana">Pays</label> <select
 										name="pays" id="pays" class="form-control"
 										[(ngModel)]="camping.pays" #pays="ngModel" required>
-										
+
 										<option value="France">France</option>
 
 									</select>
@@ -543,21 +547,23 @@
 			<!-- Fin camping -->
 
 		</div>
-		
+
 		<div class="table">
-		
-		<!-- Debut residence -->
-			
+
+			<!-- Debut residence -->
+
 			<ng-template #rModal>
 			<div class="modal-header" style="background-color: #28e1bd;">
 				<h4 class="modal-title">Residence</h4>
 				<button type="button" class="btn cancel" data-dismiss="modal"
-					(click)="cancelAction()" aria-label="Close">
+					aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
 			<div class="modal-body">
-				<form name="form" (ngSubmit)="f.form.valid && saveResidence()"
+				<form name="form"
+					(ngSubmit)="f.form.valid && saveResidence({title:'Confirmation', msg:'Hebergement ajouté avec succès'
+				, timeout: 5000, theme:'bootstrap', position:'bottom-right', type:'success'})"
 					#f="ngForm" novalidate>
 					<div style="font-size: 13px" id="fiche" class="card-body row">
 
@@ -591,7 +597,7 @@
 									<label style="font-family: verdana">Pays</label> <select
 										name="pays" id="pays" class="form-control"
 										[(ngModel)]="residence.pays" #pays="ngModel" required>
-										
+
 										<option value="France">France</option>
 
 									</select>
@@ -705,7 +711,8 @@
 									<label style="font-family: verdana">Code Postal</label> <input
 										style="font-size: 13px; font-family: verdana" type="text"
 										name="type" id="codePostal" class="form-control"
-										[(ngModel)]="residence.codePostal" #codePostal="ngModel" required>
+										[(ngModel)]="residence.codePostal" #codePostal="ngModel"
+										required>
 
 								</div>
 								<div class="col-sm-4">
@@ -723,7 +730,8 @@
 									<label style="font-family: verdana">Classement:</label> <select
 										style="font-size: 13px; font-family: verdana" type="text"
 										name="type" id="classement" class="form-control"
-										[(ngModel)]="residence.classement" #classement="ngModel" required>
+										[(ngModel)]="residence.classement" #classement="ngModel"
+										required>
 										<option>Veuillez Choisir</option>
 										<option value="1 etoile">1 etoile</option>
 										<option value="2 etoiles">2 etoiles</option>
@@ -760,7 +768,8 @@
 									<label style="font-family: verdana">Nombre de chambres:</label>
 									<input style="font-size: 13px; font-family: verdana"
 										type="text" name="type" id="nbrChambre" class="form-control"
-										[(ngModel)]="residence.nbrChambre" #nbrChambre="ngModel" required>
+										[(ngModel)]="residence.nbrChambre" #nbrChambre="ngModel"
+										required>
 								</div>
 							</div>
 						</div>
@@ -796,7 +805,6 @@
 			<table class="table table-hover" id="gites">
 				<thead class="bg-primary">
 					<tr>
-						<td></td>
 						<td>Gite N°</td>
 						<td>Libelle</td>
 						<td>Adresse</td>
@@ -806,14 +814,11 @@
 						<td>Ville</td>
 						<td>Code postal</td>
 						<td>Prix</td>
+						<td>Actions</td>
 					</tr>
 				</thead>
 				<tbody>
 					<tr *ngFor="let g of gites">
-						<td>
-							<button style="padding: 1px 2px;" class="btn btn-warning">modifier</button>
-							<button style="padding: 1px 2px;" class="btn btn-danger">supprimer</button>
-						</td>
 						<td>{{g.id}}</td>
 						<td>{{g.libelle}}</td>
 						<td>{{g.adresse}}</td>
@@ -823,6 +828,11 @@
 						<td>{{g.ville}}</td>
 						<td>{{g.codePostal}}</td>
 						<td>{{g.prix}}</td>
+						<td><a class="btn btn-primary" style="padding: 1px 2px;"
+							href="#"><i class="icofont icofont-pencil"
+								style="font-size: 20px"></i></a> <a class="btn btn-danger"
+							style="padding: 1px 2px;"><i class="icofont icofont-bin"
+								style="font-size: 20px"></i></a></td>
 					</tr>
 				</tbody>
 			</table>
@@ -838,7 +848,6 @@
 			<table class="table table-hover" id="campings">
 				<thead class="bg-primary">
 					<tr>
-						<td></td>
 						<td>Camping N°</td>
 						<td>Libelle</td>
 						<td>Adresse</td>
@@ -847,14 +856,11 @@
 						<td>Ville</td>
 						<td>Code postal</td>
 						<td>Prix</td>
+						<td>Actions</td>
 					</tr>
 				</thead>
 				<tbody>
 					<tr *ngFor="let c of campings">
-						<td>
-							<button style="padding: 1px 2px;" class="btn btn-warning">modifier</button>
-							<button style="padding: 1px 2px;" class="btn btn-danger">supprimer</button>
-						</td>
 						<td>{{c.id}}</td>
 						<td>{{c.libelle}}</td>
 						<td>{{c.adresse}}</td>
@@ -863,23 +869,26 @@
 						<td>{{c.ville}}</td>
 						<td>{{c.codePostal}}</td>
 						<td>{{c.prix}}</td>
-
+						<td><a class="btn btn-primary" style="padding: 1px 2px;"
+							href="#"><i class="icofont icofont-pencil"
+								style="font-size: 20px"></i></a> <a class="btn btn-danger"
+							style="padding: 1px 2px;"><i class="icofont icofont-bin"
+								style="font-size: 20px"></i></a></td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
 		</app-card>
 
-	<!-- affiche residence -->
+		<!-- affiche residence -->
 
-		<app-card [title]="'Liste des Résidences Hôtelières'" [classHeader]="true"
-			[blockClass]="'table-border-style'">
+		<app-card [title]="'Liste des Résidences Hôtelières'"
+			[classHeader]="true" [blockClass]="'table-border-style'">
 
 		<div class="table-responsive">
 			<table class="table table-hover" id="residences">
 				<thead class="bg-primary">
 					<tr>
-						<td></td>
 						<td>Résidence N°</td>
 						<td>Libelle</td>
 						<td>Adresse</td>
@@ -888,14 +897,11 @@
 						<td>Ville</td>
 						<td>Code postal</td>
 						<td>Prix</td>
+						<td>Actions</td>
 					</tr>
 				</thead>
 				<tbody>
 					<tr *ngFor="let r of residences">
-						<td>
-							<button style="padding: 1px 2px;" class="btn btn-warning">modifier</button>
-							<button style="padding: 1px 2px;" class="btn btn-danger">supprimer</button>
-						</td>
 						<td>{{r.id}}</td>
 						<td>{{r.libelle}}</td>
 						<td>{{r.adresse}}</td>
@@ -904,15 +910,19 @@
 						<td>{{r.ville}}</td>
 						<td>{{r.codePostal}}</td>
 						<td>{{r.prix}}</td>
-
+						<td><a class="btn btn-primary" style="padding: 1px 2px;"
+							href="#"><i class="icofont icofont-pencil"
+								style="font-size: 20px"></i></a> <a class="btn btn-danger"
+							style="padding: 1px 2px;"><i class="icofont icofont-bin"
+								style="font-size: 20px"></i></a></td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
 		</app-card>
-	
+
 	</div>
 </div>
-
+<ng2-toasty [position]="position"></ng2-toasty>
 
 

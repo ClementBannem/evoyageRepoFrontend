@@ -9,4 +9,6 @@ export class AutoCar {
   prix: number;
   gareAC_Depart: String;
   gareAC_Arrive: String;
+  libelle: String;
+  compagnie: String;
 }

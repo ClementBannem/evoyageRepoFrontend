@@ -70,6 +70,10 @@ export const AppRoutes: Routes = [
       path: 'hebergement',
       loadChildren: './components/hebergement/hebergement.module#HebergementModule'
     },
+     {
+      path: 'recherche',
+      loadChildren: './components/recherche/recherche.module#RechercheModule'
+    },
   ]
 },  {
   path: '**',

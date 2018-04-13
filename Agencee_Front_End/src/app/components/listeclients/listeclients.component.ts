@@ -1,11 +1,10 @@
-import { Client } from "../../model/model.client";
-import { ClientService } from "../../services/client.service";
-import { Input } from "@angular/core";
-import { OnInit } from "@angular/core";
-import { Component } from "@angular/core";
-import { Router } from "@angular/router";
-import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
-import { ToastyService, ToastOptions, ToastData } from "ng2-toasty";
+import {Client} from "../../model/model.client";
+import {ClientService} from "../../services/client.service";
+import {OnInit} from "@angular/core";
+import {Component} from "@angular/core";
+import {Router} from "@angular/router";
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {ToastyService, ToastOptions, ToastData} from "ng2-toasty";
 
 
 
@@ -16,7 +15,7 @@ import { ToastyService, ToastOptions, ToastData } from "ng2-toasty";
 })
 export class ListeclientsComponent implements OnInit {
   clients: Client[]; //liste des clients
-  client:Client = new Client(); //nouveau client
+  client: Client = new Client(); //nouveau client
   c: Client[]; //modal liste client
   nc: Client[]; //modal ajout client
   uc: Client[]; //modal update client
@@ -29,38 +28,38 @@ export class ListeclientsComponent implements OnInit {
   theme = 'bootstrap';
   type = 'default';
   closeOther = false;
-  
+
   errorMessage: string;
 
   constructor(private clientService: ClientService, public router: Router, private modalService: NgbModal
-    ,private toastyService: ToastyService) { }
-  
-  ver(client: Client, modal){
+    , private toastyService: ToastyService) {}
+
+  ver(client: Client, modal) {
     c => this.c = c;
     this.modalService.open(modal);
   }
-  
-  ver_NC(client: Client, modal){
+
+  ver_NC(client: Client, modal) {
     nc => this.nc = nc;
     this.modalService.open(modal, {size: 'lg'});
   }
-  
-  ver_UC(client: Client, modal){
+
+  ver_UC(client: Client, modal) {
     uc => this.uc = uc;
     this.modalService.open(modal, {size: 'lg'});
   }
-  
-  save(options){
-    
+
+  save(options) {
+
     // ajout client //
-    
-    this.clientService.createClient(this.client).subscribe(data =>{
-        this.toastyService.success(toastOptions);      
-      }
+
+    this.clientService.createClient(this.client).subscribe(data => {
+      this.toastyService.success(toastOptions);
+    }
     );
-    
+
     // Notification //
-    
+
     if (options.closeOther) {
       this.toastyService.clearAll();
     }
@@ -77,29 +76,47 @@ export class ListeclientsComponent implements OnInit {
       onRemove: (toast: ToastData) => {
         console.log('Toast ' + toast.id + ' has been added removed!');
       }
-    };    
+    };
   }
-  
-  getClients() {
-     this.clientService.getClients().then(clients => this.clients = clients);
-  }
-  
 
-  ngOnInit():void {
+  getClients() {
+    this.clientService.getClients().then(clients => this.clients = clients);
+  }
+
+
+  ngOnInit(): void {
     this.getClients();
   }
-  
-  deleteClient(user){
-    this.clientService.deleteClient(user.id).subscribe((data)=>{
-      this.clients.splice(this.clients.indexOf(user),1);
-    },(error)=>{
+
+  deleteClient(user) {
+    this.clientService.deleteClient(user.id).subscribe((data) => {
+      this.clients.splice(this.clients.indexOf(user), 1);
+    }, (error) => {
       console.log(error);
     });
   }
-  
-  updateClient(cust){
+
+  updateClient(cust) {
     this.clientService.setter(cust);
     this.router.navigate(['/listeclients']);
+  }
+
+  myFunction(event: any) {
+    var input, filter, table, tr, td, i;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("customers");
+    tr = table.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) {
+      td = tr[i].getElementsByTagName("td")[1];
+      if (td) {
+        if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      }
+    }
   }
 
 }

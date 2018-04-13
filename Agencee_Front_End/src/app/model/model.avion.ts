@@ -9,4 +9,6 @@ export class Avion {
   prix: number;
   aeroport_Depart: String;
   aeroport_Arrive: String;
+  libelle: String;
+  compagnie: String;
 }

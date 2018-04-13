@@ -8,7 +8,7 @@ import { ViewEncapsulation } from "@angular/core";
 import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
-import {ToastyService} from "ng2-toasty";
+import { ToastyService, ToastOptions, ToastData } from "ng2-toasty";
 
 @Component({
   selector: 'app-hebergement',
@@ -30,6 +30,15 @@ export class HebergementComponent implements OnInit {
   residences: Residence_Hoteliere[];
   residence: Residence_Hoteliere = new Residence_Hoteliere();
   r: Residence_Hoteliere[];
+  
+  position = 'bottom-right';
+  title: string;
+  msg: string;
+  showClose = true;
+  timeout = 5000;
+  theme = 'bootstrap';
+  type = 'default';
+  closeOther = false;
 
   constructor(private residenceService: ResidenceHoteliereService,private giteService: GiteService
     ,private campingService: CampingService, public router: Router, private modalService: NgbModal
@@ -49,11 +58,29 @@ export class HebergementComponent implements OnInit {
     this.modalService.open(modal, {size: 'lg'});
   }
 
-  saveGite() {
+  saveGite(options) {
     this.giteService.createGite(this.gite).subscribe(data => {
-      this.router.navigate(['/components/hebergement']);
+      this.toastyService.success(toastOptions);
     });
-
+// Notification //
+    
+    if (options.closeOther) {
+      this.toastyService.clearAll();
+    }
+    this.position = options.position ? options.position : this.position;
+    const toastOptions: ToastOptions = {
+      title: options.title,
+      msg: options.msg,
+      showClose: options.showClose,
+      timeout: options.timeout,
+      theme: options.theme,
+      onAdd: (toast: ToastData) => {
+        console.log('Toast ' + toast.id + ' has been added!');
+      },
+      onRemove: (toast: ToastData) => {
+        console.log('Toast ' + toast.id + ' has been added removed!');
+      }
+    };
   }
 
   getGites() {
@@ -69,11 +96,29 @@ export class HebergementComponent implements OnInit {
     this.modalService.open(modal, {size: 'lg'});
   }
 
-  saveCamping() {
+  saveCamping(options) {
     this.campingService.createCamping(this.camping).subscribe(data => {
-      this.router.navigate(['/components/hebergement']);
+      this.toastyService.success(toastOptions);
     });
-
+// Notification //
+    
+    if (options.closeOther) {
+      this.toastyService.clearAll();
+    }
+    this.position = options.position ? options.position : this.position;
+    const toastOptions: ToastOptions = {
+      title: options.title,
+      msg: options.msg,
+      showClose: options.showClose,
+      timeout: options.timeout,
+      theme: options.theme,
+      onAdd: (toast: ToastData) => {
+        console.log('Toast ' + toast.id + ' has been added!');
+      },
+      onRemove: (toast: ToastData) => {
+        console.log('Toast ' + toast.id + ' has been added removed!');
+      }
+    };
   }
 
   getCampings() {
@@ -89,11 +134,29 @@ export class HebergementComponent implements OnInit {
     this.modalService.open(modal, {size: 'lg'});
   }
 
-  saveResidence() {
+  saveResidence(options) {
     this.residenceService.createResidenceHoteliere(this.residence).subscribe(data => {
-      this.router.navigate(['/components/hebergement']);
+      this.toastyService.success(toastOptions);
     });
-
+// Notification //
+    
+    if (options.closeOther) {
+      this.toastyService.clearAll();
+    }
+    this.position = options.position ? options.position : this.position;
+    const toastOptions: ToastOptions = {
+      title: options.title,
+      msg: options.msg,
+      showClose: options.showClose,
+      timeout: options.timeout,
+      theme: options.theme,
+      onAdd: (toast: ToastData) => {
+        console.log('Toast ' + toast.id + ' has been added!');
+      },
+      onRemove: (toast: ToastData) => {
+        console.log('Toast ' + toast.id + ' has been added removed!');
+      }
+    };
   }
 
   getResidenceHotelieres() {

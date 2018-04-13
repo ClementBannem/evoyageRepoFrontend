@@ -2,7 +2,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {RouterModule} from '@angular/router';
 import {NgModule} from '@angular/core';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
 
 import {AppRoutes} from './app.routing';
@@ -30,6 +30,7 @@ import { TrainService } from "./services/train.service";
 import {UrlPermission} from './urlPermission/url.permission';
 import { PathLocationStrategy } from "@angular/common";
 import { LocationStrategy } from "@angular/common";
+//import { RechercheComponent } from './components/recherche/recherche.component';
 
 
 
@@ -40,6 +41,7 @@ import { LocationStrategy } from "@angular/common";
     AuthLayoutComponent,
     BreadcrumbsComponent,
     TitleComponent,
+    //RechercheComponent,
     
         
 
@@ -50,9 +52,10 @@ import { LocationStrategy } from "@angular/common";
     SharedModule,
     RouterModule.forRoot(AppRoutes),
     FormsModule,
+    ReactiveFormsModule,
     HttpModule,
     ScrollModule,
-    routing
+    routing,
   ],
   exports: [ScrollModule],
   providers: [AuthService, ClientService,BateauService, AvionService,OffreService, AutocarService

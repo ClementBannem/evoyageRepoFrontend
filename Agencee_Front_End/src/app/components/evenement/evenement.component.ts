@@ -3,6 +3,7 @@ import { EvenementService } from "../../services/evenement.service";
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { ToastyService, ToastOptions, ToastData } from "ng2-toasty";
 
 
 @Component({
@@ -15,7 +16,16 @@ events:Evenement = new Evenement();
   e:Evenement[];
   evenmt:Evenement[];
   
-  constructor(public router: Router, private modalService: NgbModal, private evenementService: EvenementService) { }
+  position = 'bottom-right';
+  title: string;
+  msg: string;
+  showClose = true;
+  timeout = 5000;
+  theme = 'bootstrap';
+  type = 'default';
+  closeOther = false;
+  
+  constructor(public router: Router, private modalService: NgbModal, private evenementService: EvenementService, private toastyService: ToastyService) { }
 
   ngOnInit():void {
     this.getEvenements();
@@ -25,10 +35,29 @@ events:Evenement = new Evenement();
     e => this.e = e;
     this.modalService.open(modal, {size: 'lg'});
   }
-  saveE(){
+  saveE(options){
     this.evenementService.createEvenement(this.events).subscribe(data =>{
-      this.router.navigate(['/components/evenement']);
+      this.toastyService.success(toastOptions);
     });
+    // Notification //
+    
+    if (options.closeOther) {
+      this.toastyService.clearAll();
+    }
+    this.position = options.position ? options.position : this.position;
+    const toastOptions: ToastOptions = {
+      title: options.title,
+      msg: options.msg,
+      showClose: options.showClose,
+      timeout: options.timeout,
+      theme: options.theme,
+      onAdd: (toast: ToastData) => {
+        console.log('Toast ' + toast.id + ' has been added!');
+      },
+      onRemove: (toast: ToastData) => {
+        console.log('Toast ' + toast.id + ' has been added removed!');
+      }
+    };
   }
   
   getEvenements() {

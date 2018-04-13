@@ -42,38 +42,52 @@ const MENUITEMS = [
       {
         state: 'basic',
         name: 'Contact',
-        type: 'sub',
+        type: 'link',
         icon: 'ti-new-window',
       },      
       {
-        state: 'advance',
+        state: 'recherche',
         name: 'Recherche',
-        type: 'link',
-        icon: 'ti-search'
+        type: 'sub',
+        icon: 'ti-search',
+        children:[
+          {
+            state: 'client-recherche',
+            name: 'Client'
+          },
+          {
+            state: 'evenement-recherche',
+            name: 'Evenement'
+          },
+          {
+            state: 'hebergement-recherche',
+            name: 'Hebergement'
+          }
+        ]
       },
       {
       state: 'transport',
         name: 'Voyages',
         type: 'link',
-        icon: 'ti-dashboard'
+        icon: 'ti-direction-alt'
       },
       {
       state: 'evenement',
         name: 'Evenements',
         type: 'link',
-        icon: 'ti-dashboard'
+        icon: 'ti-bookmark'
       },
       {
       state: 'offre',
         name: 'Offre',
         type: 'link',
-        icon: 'ti-dashboard'
+        icon: 'ti-gift'
       },
       {
       state: 'hebergement',
         name: 'Hebergement',
         type: 'link',
-        icon: 'ti-dashboard'
+        icon: 'ti-home'
       },
     ]
   },
@@ -86,12 +100,12 @@ const MENUITEMS = [
         type: 'link',
         icon: 'ti-user'
       },
-      {
-        state: 'fiche-client',
-        name: 'Fiche Client',
-        type: 'link',
-        icon: 'ti-bookmark-alt'
-      },
+//      {
+//        state: 'fiche-client',
+//        name: 'Fiche Client',
+//        type: 'link',
+//        icon: 'ti-bookmark-alt'
+//      },
       {
         state: 'simple-page',
         name: 'Dossiers',

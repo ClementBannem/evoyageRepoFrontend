@@ -3,6 +3,7 @@ import { OffreService } from "../../services/offre.service";
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { ToastyService, ToastOptions, ToastData } from "ng2-toasty";
 
 @Component({
   selector: 'app-offre',
@@ -13,7 +14,17 @@ export class OffreComponent implements OnInit {
   offre:Offre = new Offre();
   o:Offre[];
   offres: Offre[]; //liste des offres
-  constructor(public router: Router, private modalService: NgbModal, private offreService: OffreService) { }
+  
+  position = 'bottom-right';
+  title: string;
+  msg: string;
+  showClose = true;
+  timeout = 5000;
+  theme = 'bootstrap';
+  type = 'default';
+  closeOther = false;
+  constructor(public router: Router, private modalService: NgbModal, private offreService: OffreService
+  , private toastyService: ToastyService) { }
 
   ngOnInit():void {
     this.getOffre();
@@ -23,10 +34,29 @@ export class OffreComponent implements OnInit {
     o => this.o = o;
     this.modalService.open(modal, {size: 'lg'});
   }
-  saveO(){
+  saveO(options){
     this.offreService.createOffre(this.offre).subscribe(data =>{
-      this.router.navigate(['/components/evenement']);
+      this.toastyService.success(toastOptions);
     });
+    // Notification //
+    
+    if (options.closeOther) {
+      this.toastyService.clearAll();
+    }
+    this.position = options.position ? options.position : this.position;
+    const toastOptions: ToastOptions = {
+      title: options.title,
+      msg: options.msg,
+      showClose: options.showClose,
+      timeout: options.timeout,
+      theme: options.theme,
+      onAdd: (toast: ToastData) => {
+        console.log('Toast ' + toast.id + ' has been added!');
+      },
+      onRemove: (toast: ToastData) => {
+        console.log('Toast ' + toast.id + ' has been added removed!');
+      }
+    };
   }
   
   getOffre() {

@@ -9,4 +9,6 @@ export class Train {
   prix: number;
   gare_Depart: String;
   gare_Arrive: String;
+  libelle: String;
+  compagnie: String;
 }

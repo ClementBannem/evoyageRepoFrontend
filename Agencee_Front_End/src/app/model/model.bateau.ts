@@ -9,4 +9,6 @@ export class Bateau {
   prix: number;
   quai_Depart: String;
   quai_Arrive: String;
+  libelle: String;
+  compagnie: String;
 }

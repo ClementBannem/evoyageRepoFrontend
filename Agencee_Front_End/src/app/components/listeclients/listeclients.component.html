@@ -1,40 +1,14 @@
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 
-<style>
-#customers {
-    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-}
-
-#customers td, #customers th {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: center;
-}
-
-#customers tr:nth-child(even){background-color: white;}
-
-#customers tr:hover {background-color: #ddd;}
-
-#customers th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: left;
-    background-color: #1abc9c;
-    color: white;
-    text-align: center;
-}
-</style>
 <div class="row">
 	<div class="col-sm-6" style="margin-top: 18px;">
 		<div ngbDropdown class="dropdown-success dropdown open">
-<!-- 			<button class="btn" style="background-color: #8cddcd; cursor:pointer;" (click)="ver_NC(nc, ncModal)"> -->
 			<button class="btn btn-success" (click)="ver_NC(nc, ncModal)">
 				<i class="icofont icofont-plus-circle"></i>Nouveau Client
 			</button>			
 		</div>
 	</div>
+	
 	<div class="col-sm-12">
 		<!-- Contextual classes table starts -->
 		<app-card [title]="'Clients'" [classHeader]="true"
@@ -535,7 +509,10 @@
 				</ng-template>
 		
 		    <!-- Fin Modal Ajout Client -->
-		
+		    
+		<div>
+		<input type="text" id="myInput" (keyup)="myFunction($event)" placeholder="Rechercher par nom..." title="Tapez un nom">	
+		</div>
 		<div class="table-responsive">
 			<table class="table table-hover" id="customers">
 				<thead>
@@ -550,7 +527,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr *ngFor="let c of clients" (click)="ver(c, cModal)" class="table-active" style="cursor: pointer;">
+					<tr *ngFor="let c of clients" (click)="ver(c, cModal)" class="table-inactive" style="cursor: pointer;">
 						<td>{{c.id}}</td>
 						<td>{{c.nom}}</td>
 						<td>{{c.prenom}}</td>

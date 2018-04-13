@@ -36,12 +36,13 @@
 			<div class="modal-header" style="background-color: #28e1bd;">
 				<h4 class="modal-title">Bateau</h4>
 				<button type="button" class="btn cancel" data-dismiss="modal"
-					(click)="cancelAction()" aria-label="Close">
+					 aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
 			<div class="modal-body">
-				<form name="form" (ngSubmit)="f.form.valid && save()" #f="ngForm"
+				<form name="form" (ngSubmit)="f.form.valid && save({title:'Message de confirmation', msg:'Transport ajouté avec succès'
+				, timeout: 5000, theme:'bootstrap', position:'bottom-right', type:'success'})" #f="ngForm"
 					novalidate>
 					<div style="font-size: 13px" id="fiche" class="card-body row">
 
@@ -131,15 +132,13 @@
 											#quai_Arrive="ngModel" required>
 									</div>
 								</div>
-
 							</div>
 						</div>
 					</div>
-
 					<div class="modal-footer">
 						<button type="button"
 							style="height: 30px; text-align: center; padding-top: 5px; margin-top: 10px; margin-bottom: 10px"
-							class="btn btn-secondary" data-dismiss="modal">Close</button>
+							class="btn btn-secondary" data-dismiss="modal">Fermer</button>
 						<div class="row">
 							<button class="btn btn-primary"
 								style="height: 30px; text-align: center; padding-top: 5px; margin-top: 10px; margin-bottom: 10px">Ajouter
@@ -156,7 +155,6 @@
 
 			<!-- Ajout Avion -->
 
-
 			<ng-template #aModal>
 			<div class="modal-header" style="background-color: #28e1bd;">
 				<h4 class="modal-title">Avion</h4>
@@ -166,7 +164,8 @@
 				</button>
 			</div>
 			<div class="modal-body">
-				<form name="form" (ngSubmit)="fAv.form.valid && saveAv()"
+				<form name="form" (ngSubmit)="fAv.form.valid && saveAv({title:'Message de confirmation', msg:'Transport ajouté avec succès'
+				, timeout: 5000, theme:'bootstrap', position:'bottom-right', type:'success'})"
 					#fAv="ngForm" novalidate>
 					<div style="font-size: 13px" id="fiche" class="card-body row">
 
@@ -185,8 +184,8 @@
 										<select style="font-size: 13px; font-family: verdana"
 											type="text" name="type" id="escale" class="form-control"
 											[(ngModel)]="avion.escale" #escale="ngModel" required>
-											<option value="escale">Avec</option>
-											<option value="escale">Sans</option>
+											<option value="Avec">Avec</option>
+											<option value="Sans">Sans</option>
 										</select>
 									</div>
 								</div>
@@ -288,7 +287,8 @@
 				</button>
 			</div>
 			<div class="modal-body">
-				<form name="form" (ngSubmit)="f.form.valid && saveAC()" #f="ngForm"
+				<form name="form" (ngSubmit)="f.form.valid && saveAC({title:'Message de confirmation', msg:'Transport ajouté avec succès'
+				, timeout: 5000, theme:'bootstrap', position:'bottom-right', type:'success'})" #f="ngForm"
 					novalidate>
 					<div style="font-size: 13px" id="fiche" class="card-body row">
 
@@ -410,7 +410,8 @@
 				</button>
 			</div>
 			<div class="modal-body">
-				<form name="form" (ngSubmit)="f.form.valid && saveT()" #f="ngForm"
+				<form name="form" (ngSubmit)="f.form.valid && saveT({title:'Message de confirmation', msg:'Transport ajouté avec succès'
+				, timeout: 5000, theme:'bootstrap', position:'bottom-right', type:'success'})" #f="ngForm"
 					novalidate>
 					<div style="font-size: 13px" id="fiche" class="card-body row">
 
@@ -737,6 +738,6 @@
 
 	</div>
 </div>
-
+<ng2-toasty [position]="position"></ng2-toasty>
 
 

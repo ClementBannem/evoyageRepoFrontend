@@ -6,14 +6,11 @@ import {AutocarService} from "../../services/autocar.service";
 import {AvionService} from "../../services/avion.service";
 import {BateauService} from "../../services/bateau.service";
 import {TrainService} from "../../services/train.service";
-import {EventEmitter} from "@angular/core";
-import {Output} from "@angular/core";
-import {Input} from "@angular/core";
 import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {ViewEncapsulation} from "@angular/core";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
-import {ToastyService} from "ng2-toasty";
+import { ToastyService, ToastOptions, ToastData } from "ng2-toasty";
 
 @Component({
   selector: 'app-transport',
@@ -23,25 +20,34 @@ import {ToastyService} from "ng2-toasty";
 })
 export class TransportComponent implements OnInit {
   autocars: AutoCar[];
+  autocar: AutoCar = new AutoCar();
+  ac: AutoCar[];
+
   avions: Avion[];
+  avion: Avion = new Avion();
+  a: Avion[];
+
+  train: Train = new Train();
+  t: Train[];
   trains: Train[];
+
   bateau: Bateau = new Bateau();
   b: Bateau[];
   bateaux: Bateau[];
-  avion: Avion = new Avion();
-  a: Avion[];
-  autocar: AutoCar = new AutoCar();
-  ac: AutoCar[];
-  train: Train = new Train();
-  t: Train[];
-  @Input('show-modal') showModal: boolean;
-  @Output('closed') closeEmitter: EventEmitter<ModalResult> = new EventEmitter<ModalResult>();
-  //@Output('loaded') loadedEmitter: EventEmitter < Modal > = new EventEmitter < Modal > ();
-  @Output() positiveLabelAction = new EventEmitter();
+  
+  position = 'bottom-right';
+  title: string;
+  msg: string;
+  showClose = true;
+  timeout = 5000;
+  theme = 'bootstrap';
+  type = 'default';
+  closeOther = false;
 
   errorMessage: string;
 
-  constructor(private bateauService: BateauService, private trainService: TrainService, private autocarService: AutocarService, private avionService: AvionService, public router: Router, private modalService: NgbModal, private toastyService: ToastyService) {}
+  constructor(private bateauService: BateauService, private trainService: TrainService, private autocarService: AutocarService
+    , private avionService: AvionService, public router: Router, private modalService: NgbModal, private toastyService: ToastyService) {}
 
   ngOnInit(): void {
     this.getAutocars();
@@ -54,41 +60,73 @@ export class TransportComponent implements OnInit {
     b => this.b = b;
     this.modalService.open(modal, {size: 'lg'});
   }
-  save() {
+  save(options) {
     this.bateauService.createBateau(this.bateau).subscribe(data => {
-      this.router.navigate(['/components/transport']);
+      this.toastyService.success(toastOptions);
     });
+    // Notification //
+    
+    if (options.closeOther) {
+      this.toastyService.clearAll();
+    }
+    this.position = options.position ? options.position : this.position;
+    const toastOptions: ToastOptions = {
+      title: options.title,
+      msg: options.msg,
+      showClose: options.showClose,
+      timeout: options.timeout,
+      theme: options.theme,
+      onAdd: (toast: ToastData) => {
+        console.log('Toast ' + toast.id + ' has been added!');
+      },
+      onRemove: (toast: ToastData) => {
+        console.log('Toast ' + toast.id + ' has been added removed!');
+      }
+    };
   }
 
   getBateaux() {
     this.bateauService.getBateau().then(bateaux => this.bateaux = bateaux);
   }
 
-  cancelAction() {
-    this.showModal = false;
-    this.closeEmitter.next({
-      action: ModalAction.CANCEL
-    });
-    return false;
-  }
-  
-  deleteBateau(ba){
-    this.bateauService.deleteBateau(ba.id).subscribe((data)=>{
-      this.bateaux.splice(this.bateaux.indexOf(ba),1);
-    },(error)=>{
+  deleteBateau(ba) {
+    this.bateauService.deleteBateau(ba.id).subscribe((data) => {
+      this.bateaux.splice(this.bateaux.indexOf(ba), 1);
+    }, (error) => {
       console.log(error);
     });
   }
+  
   // traitement avion
 
   verA(avion: Avion, modal) {
     a => this.a = a;
     this.modalService.open(modal, {size: 'lg'});
   }
-  saveAv() {
+  
+  saveAv(options) {
     this.avionService.createAvion(this.avion).subscribe(data => {
-      this.router.navigate(['/components/transport']);
+      this.toastyService.success(toastOptions);
     });
+    // Notification //
+    
+    if (options.closeOther) {
+      this.toastyService.clearAll();
+    }
+    this.position = options.position ? options.position : this.position;
+    const toastOptions: ToastOptions = {
+      title: options.title,
+      msg: options.msg,
+      showClose: options.showClose,
+      timeout: options.timeout,
+      theme: options.theme,
+      onAdd: (toast: ToastData) => {
+        console.log('Toast ' + toast.id + ' has been added!');
+      },
+      onRemove: (toast: ToastData) => {
+        console.log('Toast ' + toast.id + ' has been added removed!');
+      }
+    };
   }
 
   getAvions() {
@@ -100,18 +138,37 @@ export class TransportComponent implements OnInit {
     ac => this.ac = ac;
     this.modalService.open(modal, {size: 'lg'});
   }
-  saveAC() {
+  saveAC(options) {
     this.autocarService.createAutocar(this.autocar).subscribe(data => {
-      this.router.navigate(['/components/transport']);
+      this.toastyService.success(toastOptions);
     });
+    // Notification //
+    
+    if (options.closeOther) {
+      this.toastyService.clearAll();
+    }
+    this.position = options.position ? options.position : this.position;
+    const toastOptions: ToastOptions = {
+      title: options.title,
+      msg: options.msg,
+      showClose: options.showClose,
+      timeout: options.timeout,
+      theme: options.theme,
+      onAdd: (toast: ToastData) => {
+        console.log('Toast ' + toast.id + ' has been added!');
+      },
+      onRemove: (toast: ToastData) => {
+        console.log('Toast ' + toast.id + ' has been added removed!');
+      }
+    };
   }
   getAutocars() {
     this.autocarService.getAutocars().then(autocars => this.autocars = autocars);
   }
-  deleteAutocar(au){
-    this.autocarService.deleteAutocar(au.id).subscribe((data)=>{
-      this.autocars.splice(this.autocars.indexOf(au),1);
-    },(error)=>{
+  deleteAutocar(au) {
+    this.autocarService.deleteAutocar(au.id).subscribe((data) => {
+      this.autocars.splice(this.autocars.indexOf(au), 1);
+    }, (error) => {
       console.log(error);
     });
   }
@@ -121,20 +178,35 @@ export class TransportComponent implements OnInit {
     t => this.t = t;
     this.modalService.open(modal, {size: 'lg'});
   }
-  saveT() {
+  saveT(options) {
     this.trainService.createTrain(this.train).subscribe(data => {
-      this.router.navigate(['/components/transport']);
+      this.toastyService.success(toastOptions);
     });
+    // Notification //
+    
+    if (options.closeOther) {
+      this.toastyService.clearAll();
+    }
+    this.position = options.position ? options.position : this.position;
+    const toastOptions: ToastOptions = {
+      title: options.title,
+      msg: options.msg,
+      showClose: options.showClose,
+      timeout: options.timeout,
+      theme: options.theme,
+      onAdd: (toast: ToastData) => {
+        console.log('Toast ' + toast.id + ' has been added!');
+      },
+      onRemove: (toast: ToastData) => {
+        console.log('Toast ' + toast.id + ' has been added removed!');
+      }
+    };
   }
   getTrains() {
     this.trainService.getTrains().then(trains => this.trains = trains);
   }
 
-
 }
 
-export enum ModalAction {POSITIVE, CANCEL}
 
-export interface ModalResult {
-  action: ModalAction;
-}
+

@@ -52,7 +52,8 @@
 			</button>
 		</div>
 		<div class="modal-body">
-			<form name="form" (ngSubmit)="f.form.valid && saveO()" #f="ngForm"
+			<form name="form" (ngSubmit)="f.form.valid && saveO({title:'Confirmation', msg:'Offre ajoutée avec succès'
+				, timeout: 5000, theme:'bootstrap', position:'bottom-right', type:'success'})" #f="ngForm"
 				novalidate>
 				<div style="font-size: 13px" id="fiche" class="card-body row">
 
@@ -102,5 +103,7 @@
 		</ng-template>
 	</div>
 </div>
+<ng2-toasty [position]="position"></ng2-toasty>
+
 
 
