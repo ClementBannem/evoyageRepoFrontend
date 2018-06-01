@@ -1,0 +1,23 @@
+/* You can add global styles to this file, and also import other style files */
+
+aside.pcoded-slider.ng-sidebar {
+    top: 56px;
+}
+
+.slimscroll-wrapper, .scroll-window {
+    width: 100% !important;
+}
+
+.userlist-box.show {
+    display: -webkit-box;
+}
+
+.userlist-box.hide {
+    display: none;
+}
+
+#MyBG{
+    background-image: url("C:/Users/Clement Bannem/Downloads/674925_V1.png");
+    background-position: 227px -28px;
+    background-size:1150px;
+}

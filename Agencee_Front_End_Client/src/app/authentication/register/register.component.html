@@ -1,0 +1,80 @@
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<section
+	class="login p-fixed d-flex text-center bg-primary common-img-bg">
+	<!-- starts -->
+	<div class="auth-fluid">
+		<div class="row">
+			<div class="col-sm-12">
+				<!-- Authentication card start -->
+				<div class="login-card card-body auth-body">
+
+					<form name="form" (ngSubmit)="f.form.valid && register()"
+						#f="ngForm" novalidate>
+						<div class="auth-box">
+							<div class="alert alert-danger" role="alert" *ngIf="errorMessage">{{errorMessage}}</div>
+							<span id="reauth-email" class="reauth-email"></span>
+							<div class="row m-b-20">
+								<div class="col-md-4">
+									<h3 class="text-center txt-primary">S'inscrire</h3>
+								</div>
+							</div>
+							<div class="form-group"
+								[ngClass]="{ 'has-error': f.submitted && !fullName.valid }">
+								<input type="text" class="form-control" name="fullName"
+									id="fullName" placeholder="Nom complet"
+									[(ngModel)]="user.fullName" #fullName="ngModel" required />
+								<div *ngIf="f.submitted && !fullName.valid" class="form-control-danger col-form-label">Nom
+									complet requis</div>
+							</div>
+							<div class="form-group"
+								[ngClass]="{ 'has-error': f.submitted && !username.valid }">
+								<input type="text" class="form-control" name="username"
+									id="username" placeholder="Nom d'utilisateur"
+									[(ngModel)]="user.username" #username="ngModel" required />
+								<div *ngIf="f.submitted && !username.valid" class="form-control-danger col-form-label">
+
+									<div *ngIf="username.errors.required">Nom d'utilisateur
+										requis.</div>
+
+								</div>
+							</div>
+							<div class="form-group"
+								[ngClass]="{ 'has-error': f.submitted && !email.valid }">
+								<input type="text" class="form-control" name="email" id="email"
+									placeholder="Email" pattern="[^ @]*@[^ @]*"
+									[(ngModel)]="user.email" #email="ngModel" required />
+								<div *ngIf="f.submitted && !email.valid" class="help-block">
+
+									<div *ngIf="email.errors.required" class="form-control-danger col-form-label">Email requis.</div>
+									<div class="form-control-danger col-form-label"
+										*ngIf="email.errors.pattern">Cette adresse email n'est
+										pas valide</div>
+								</div>
+							</div>
+							<div class="form-group"
+								[ngClass]="{ 'has-error': f.submitted && !password.valid }">
+								<input type="password" class="form-control" name="password"
+									id="password" placeholder="Mot de passe"
+									[(ngModel)]="user.password" #password="ngModel" required
+									minlength="4" />
+								<div *ngIf="f.submitted && !password.valid" class="help-block">
+
+									<div *ngIf="password.errors.required">Mot de passe requis.</div>
+									<div class="form-control-warning col-form-label"
+										*ngIf="password.errors.minlength">Le mot de passe doit contenir au moins 4 caractère.
+									</div>
+
+								</div>
+							</div>
+							<div class="col-sm-12">													
+								<button class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20" type="submit">Créer le compte</button>														
+								<button [routerLink]="['/authentication/login']"
+								class="btn btn-lg btn-danger btn-block btn-cancel" type="button">Annuler</button>
+							</div>						
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

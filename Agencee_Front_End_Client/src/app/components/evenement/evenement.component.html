@@ -1,0 +1,123 @@
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+<div class="row">
+	<div>
+		<form [formGroup]='stateForm' novalidate>
+			<input type="text" (click)="toggleDropDown()" formControlName='search' id="search" name="search"
+			placeholder="Rechercher par Evenement" class="form-control barre" >
+		</form>
+		<!-- clickOutside(clickOutside)="toggleDropDown()" -->
+		<div *ngIf="showDropDown" class="state-conatiner-dropdown">
+			<div>
+				<div (click)="selectValue(e)" class="events" *ngFor="let e of evenmt | searchFilter:getSearchValue()">
+					{{e.typeE}}
+				</div>
+			</div>
+		</div>
+
+		<!-- <div class="btn-group">
+				<button type="button" class="btn btn-success poss" (click)="searchEvenement()">Rechercher</button>
+			</div> -->
+	</div>
+	<!-- <ul>
+		<li *ngFor="let e of evenmt">
+			<h4>{{e.typeE}} - {{e.prixE}} {{e.dateE}}</h4>
+		</li>
+	</ul> -->
+	<div class="col-lg-4" *ngFor="let e of evenmt | searchFilter:getSearchValue()">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="card card-border-primary polaroid">
+					<div class="card-header">
+						<h5>{{e.typeE}}</h5>
+						<div ngbDropdown class="dropdown-secondary dropdown f-right">
+							<button ngbDropdownToggle class="btn btn-primary btn-mini dropdown-toggle waves-effect waves-light" type="button" id="dropdown6"
+							 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Overdue</button>
+							<div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdown6" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
+								<a class="dropdown-item waves-light waves-effect" href="javascript:">
+									<span class="point-marker bg-danger"></span>Pending</a>
+								<a class="dropdown-item waves-light waves-effect" href="javascript:">
+									<span class="point-marker bg-warning"></span>Paid</a>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item waves-light waves-effect active" href="javascript:">
+									<span class="point-marker bg-success"></span>On Hold
+								</a>
+								<a class="dropdown-item waves-light waves-effect" href="javascript:">
+									<span class="point-marker bg-info"></span>Canceled</a>
+							</div>
+							<!-- end of dropdown menu -->
+							<span class="f-left m-r-5 text-inverse">Status : </span>
+						</div>
+					</div>
+					<div class="card-block">
+						<div class="row">
+							<div class="col-sm-6">
+								<ul class="list list-unstyled">
+									<li>Prix:</li>
+									<li>Date Evenement:
+										<span class="text-semibold">
+											<b>{{e.dateE}}</b>
+										</span>
+									</li>
+								</ul>
+							</div>
+							<div class="col-sm-6">
+								<ul class="list list-unstyled text-right">
+									<li>
+										<b>{{e.prixE}}€</b>
+									</li>
+									<li>Commence à:
+										<span class="text-semibold">{{e.heure_deb}}</span>
+									</li>
+									<li>Se termine à:
+										<span class="text-semibold">{{e.heure_fin}}</span>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="card-footer">
+						<div class="task-list-table">
+							<p class="task-due">
+								<strong> Due : </strong>
+								<strong class="label label-success">23 hours
+								</strong>
+							</p>
+						</div>
+						<div class="task-board m-0">
+							<a href="javascript:" class="btn btn-info btn-mini b-none">
+								<i class="icofont icofont-eye-alt m-0"></i>
+							</a>
+							<!-- end of dropdown-secondary -->
+							<div ngbDropdown class="dropdown-secondary dropdown">
+								<button ngbDropdownToggle class="btn btn-info btn-mini dropdown-toggle waves-light b-none txt-muted" type="button" id="dropdown3"
+								 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									<i class="icofont icofont-navigation-menu"></i>
+								</button>
+								<div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdown3" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
+									<a class="dropdown-item waves-light waves-effect" href="javascript:">
+										<i class="icofont icofont-ui-alarm"></i>
+										Print Invoice</a>
+									<a class="dropdown-item waves-light waves-effect" href="javascript:">
+										<i class="icofont icofont-attachment"></i>
+										Download invoice</a>
+									<div class="dropdown-divider"></div>
+									<a class="dropdown-item waves-light waves-effect" href="javascript:">
+										<i class="icofont icofont-spinner-alt-5"></i> Edit Invoice</a>
+									<a class="dropdown-item waves-light waves-effect" href="javascript:">
+										<i class="icofont icofont-ui-edit"></i>
+										Remove Invoice</a>
+								</div>
+								<!-- end of dropdown menu -->
+							</div>
+							<!-- end of seconadary -->
+						</div>
+						<!-- end of pull-right class -->
+					</div>
+					<!-- end of card-footer -->
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<ng2-toasty [position]="position"></ng2-toasty>

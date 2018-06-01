@@ -1,0 +1,191 @@
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+<div class="row">
+	
+	<div class="col-sm-12">
+		<!-- Basic table card start -->
+
+		<!-- affiche autocar -->
+
+		<app-card [title]="'Liste des voyages en Autocar'"
+			[classHeader]="true" [blockClass]="'table-border-style'">
+
+		<div class="table-responsive">
+			<table class="table table-hover" id="autocars">
+				<thead class="bg-primary">
+					<tr>
+
+						<td>Voyage N°</td>
+						<td>Départ le</td>
+						<td>Arrivée le</td>
+						<td>Heure de Départ</td>
+						<td>Heure d'arrivée</td>
+						<td>Escale</td>
+						<td>Prix</td>
+						<td>Gare de départ</td>
+						<td>Gare d'arrivé</td>
+						<td></td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor="let a of autocars" class="table-inactive"
+						style="cursor: pointer;">
+
+						<td>{{a.id}}</td>
+						<td>{{a.date_Depart}}</td>
+						<td>{{a.date_Arrive}}</td>
+						<td>{{a.heure_Depart}}</td>
+						<td>{{a.heure_Arrive}}</td>
+						<td>{{a.escale}}</td>
+						<td>{{a.prix}}</td>
+						<td>{{a.gareAC_Depart}}</td>
+						<td>{{a.gareAC_Arrive}}</td>
+						<td><a class="btn btn-warning" style="padding: 1px 2px;"
+							href="#"><i class="icofont icofont-pencil"
+								style="font-size: 20px">Reservation</i></a></td>
+
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		</app-card>
+
+		<!-- affiche avion -->
+
+		<app-card [title]="'Liste des voyages en Avion'" [classHeader]="true"
+			[blockClass]="'table-border-style'">
+
+		<div class="table-responsive">
+			<table class="table table-hover" id="avions">
+				<thead class="bg-primary">
+					<tr>
+
+						<td>Voyage N°</td>
+						<td>Départ le</td>
+						<td>Arrivée le</td>
+						<td>Heure de Départ</td>
+						<td>Heure d'arrivée</td>
+						<td>Escale</td>
+						<td>Prix</td>
+						<td>Aeroport de départ</td>
+						<td>Aeroport d'arrivé</td>
+						<td></td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor="let av of avions" class="table-inactive"
+						style="cursor: pointer;">
+
+						<td>{{av.id}}</td>
+						<td>{{av.date_Depart}}</td>
+						<td>{{av.date_Arrive}}</td>
+						<td>{{av.heure_Depart}}</td>
+						<td>{{av.heure_Arrive}}</td>
+						<td>{{av.escale}}</td>
+						<td>{{av.prix}}</td>
+						<td>{{av.aeroport_Depart}}</td>
+						<td>{{av.aeroport_Arrive}}</td>
+						<td><a class="btn btn-warning" style="padding: 1px 2px;"
+							href="#"><i class="icofont icofont-pencil"
+								style="font-size: 20px">Reservation</i></a> </td>
+
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		</app-card>
+
+		<!-- affiche bateaux -->
+
+		<app-card [title]="'Liste des voyages en bateau'" [classHeader]="true"
+			[blockClass]="'table-border-style'">
+
+		<div class="table-responsive">
+			<table class="table table-hover" id="bateaux">
+				<thead class="bg-primary">
+					<tr>
+
+						<td>Voyage N°</td>
+						<td>Départ le</td>
+						<td>Arrivée le</td>
+						<td>Heure de Départ</td>
+						<td>Heure d'arrivée</td>
+						<td>Escale</td>
+						<td>Prix</td>
+						<td>Quai de départ</td>
+						<td>Quai d'arrivé</td>
+						<td></td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor="let b of bateaux" class="table-inactive"
+						style="cursor: pointer;">
+
+						<td>{{b.id}}</td>
+						<td>{{b.date_Depart}}</td>
+						<td>{{b.date_Arrive}}</td>
+						<td>{{b.heure_Depart}}</td>
+						<td>{{b.heure_Arrive}}</td>
+						<td>{{b.escale}}</td>
+						<td>{{b.prix}}</td>
+						<td>{{b.quai_Depart}}</td>
+						<td>{{b.quai_Arrive}}</td>
+						<td><a class="btn btn-warning" style="padding: 1px 2px;"
+							href="#"><i class="icofont icofont-pencil"
+								style="font-size: 20px">Reservation</i></a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		</app-card>
+
+		<!-- affiche bateaux -->
+
+		<app-card [title]="'Liste des voyages en train'" [classHeader]="true"
+			[blockClass]="'table-border-style'">
+
+		<div class="table-responsive">
+			<table class="table table-hover" id="bateaux">
+				<thead class="bg-primary">
+					<tr>
+
+						<td>Voyage N°</td>
+						<td>Départ le</td>
+						<td>Arrivée le</td>
+						<td>Heure de Départ</td>
+						<td>Heure d'arrivée</td>
+						<td>Escale</td>
+						<td>Prix</td>
+						<td>Gare de départ</td>
+						<td>Gare d'arrivé</td>
+						<td></td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor="let t of trains" class="table-inactive"
+						style="cursor: pointer;">
+
+						<td>{{t.id}}</td>
+						<td>{{t.date_Depart}}</td>
+						<td>{{t.date_Arrive}}</td>
+						<td>{{t.heure_Depart}}</td>
+						<td>{{t.heure_Arrive}}</td>
+						<td>{{t.escale}}</td>
+						<td>{{t.prix}}</td>
+						<td>{{t.gare_Depart}}</td>
+						<td>{{t.gare_Arrive}}</td>
+						<td><a class="btn btn-warning" style="padding: 1px 2px;"
+							href="#"><i class="icofont icofont-pencil"
+								style="font-size: 20px">Reservation</i></a></td>
+
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		</app-card>
+
+	</div>
+</div>
+<ng2-toasty [position]="position"></ng2-toasty>
+
+

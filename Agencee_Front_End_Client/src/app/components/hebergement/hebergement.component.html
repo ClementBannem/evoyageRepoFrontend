@@ -1,0 +1,132 @@
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+<div class="row">
+	
+	<div class="col-sm-12">
+		<!-- Basic table card start -->
+		
+
+		<!-- affiche gites -->
+
+		<app-card [title]="'Liste des Gites'" [classHeader]="true"
+			[blockClass]="'table-border-style'">
+
+		<div class="table-responsive">
+			<table class="table table-hover" id="gites">
+				<thead class="bg-primary">
+					<tr>
+						<td>Gite N°</td>
+						<td>Libelle</td>
+						<td>Adresse</td>
+						<td>Classement</td>
+						<td>Type</td>
+						<td>Pays</td>
+						<td>Ville</td>
+						<td>Code postal</td>
+						<td>Prix</td>
+						<td>Actions</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor="let g of gites">
+						<td>{{g.id}}</td>
+						<td>{{g.libelle}}</td>
+						<td>{{g.adresse}}</td>
+						<td>{{g.classement}}</td>
+						<td>{{g.typeGite}}</td>
+						<td>{{g.pays}}</td>
+						<td>{{g.ville}}</td>
+						<td>{{g.codePostal}}</td>
+						<td>{{g.prix}}</td>
+						<td><a class="btn btn-primary" style="padding: 1px 2px;"
+							href="#"><i class="icofont icofont-pencil"
+								style="font-size: 20px"></i></a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		</app-card>
+
+		<!-- affiche camping -->
+
+		<app-card [title]="'Liste des Campings'" [classHeader]="true"
+			[blockClass]="'table-border-style'">
+
+		<div class="table-responsive">
+			<table class="table table-hover" id="campings">
+				<thead class="bg-primary">
+					<tr>
+						<td>Camping N°</td>
+						<td>Libelle</td>
+						<td>Adresse</td>
+						<td>Classement</td>
+						<td>Pays</td>
+						<td>Ville</td>
+						<td>Code postal</td>
+						<td>Prix</td>
+						<td>Actions</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor="let c of campings">
+						<td>{{c.id}}</td>
+						<td>{{c.libelle}}</td>
+						<td>{{c.adresse}}</td>
+						<td>{{c.classement}}</td>
+						<td>{{c.pays}}</td>
+						<td>{{c.ville}}</td>
+						<td>{{c.codePostal}}</td>
+						<td>{{c.prix}}</td>
+						<td><a class="btn btn-primary" style="padding: 1px 2px;"
+							href="#"><i class="icofont icofont-pencil"
+								style="font-size: 20px"></i></a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		</app-card>
+
+		<!-- affiche residence -->
+
+		<app-card [title]="'Liste des Résidences Hôtelières'"
+			[classHeader]="true" [blockClass]="'table-border-style'">
+
+		<div class="table-responsive">
+			<table class="table table-hover" id="residences">
+				<thead class="bg-primary">
+					<tr>
+						<td>Résidence N°</td>
+						<td>Libelle</td>
+						<td>Adresse</td>
+						<td>Classement</td>
+						<td>Pays</td>
+						<td>Ville</td>
+						<td>Code postal</td>
+						<td>Prix</td>
+						<td>Actions</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor="let r of residences">
+						<td>{{r.id}}</td>
+						<td>{{r.libelle}}</td>
+						<td>{{r.adresse}}</td>
+						<td>{{r.classement}}</td>
+						<td>{{r.pays}}</td>
+						<td>{{r.ville}}</td>
+						<td>{{r.codePostal}}</td>
+						<td>{{r.prix}}</td>
+						<td><a class="btn btn-primary" style="padding: 1px 2px;"
+							href="#"><i class="icofont icofont-pencil"
+								style="font-size: 20px"></i></a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		</app-card>
+
+	</div>
+</div>
+<ng2-toasty [position]="position"></ng2-toasty>
+
+
