@@ -2,14 +2,15 @@
 
 <div class="row">
 	<div>
-		<form [formGroup]='stateForm' novalidate>
-			<input type="text" (click)="toggleDropDown()" formControlName='search' id="search" name="search"
+		<form>
+				<!-- (click)="toggleDropDown()" -->
+			<input type="text"  [(ngModel)]="search" id="search" name="search"
 			placeholder="Rechercher par Evenement" class="form-control barre" >
 		</form>
 		<!-- clickOutside(clickOutside)="toggleDropDown()" -->
-		<div *ngIf="showDropDown" class="state-conatiner-dropdown">
+		<div (click)="selectValue(e)" *ngIf="showDropDown" class="state-conatiner-dropdown">
 			<div>
-				<div (click)="selectValue(e)" class="events" *ngFor="let e of evenmt | searchFilter:getSearchValue()">
+				<div class="events" *ngFor="let e of evenmt | filter:search">
 					{{e.typeE}}
 				</div>
 			</div>
@@ -24,7 +25,7 @@
 			<h4>{{e.typeE}} - {{e.prixE}} {{e.dateE}}</h4>
 		</li>
 	</ul> -->
-	<div class="col-lg-4" *ngFor="let e of evenmt | searchFilter:getSearchValue()">
+	<div class="col-lg-4" *ngFor="let e of evenmt | filter:search">
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="card card-border-primary polaroid">

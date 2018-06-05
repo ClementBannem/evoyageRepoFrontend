@@ -1,14 +1,16 @@
 import { Evenement } from "../../model/model.evenement";
 import { EvenementService } from "../../services/evenement.service";
-import { Component, OnInit, NgZone } from '@angular/core';
+import { Component, OnInit, NgZone, Pipe } from '@angular/core';
 import { Router } from "@angular/router";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { ToastyService, ToastOptions, ToastData } from "ng2-toasty";
+import { FormGroup, FormBuilder } from "@angular/forms";
+import { SearchFilterPipe } from "./filter-pipe";
+import { FilterPipe } from "./filter.pipe";
 import {
   Input, Output, Inject, AfterViewInit, forwardRef, EventEmitter, ChangeDetectionStrategy,
   ChangeDetectorRef
 } from '@angular/core';
-import { FormGroup, FormBuilder } from "@angular/forms";
 
 
 
@@ -16,7 +18,8 @@ import { FormGroup, FormBuilder } from "@angular/forms";
 @Component({
   selector: 'app-evenement',
   templateUrl: './evenement.component.html',
-  styleUrls: ['./evenement.component.css']
+  styleUrls: ['./evenement.component.css'],
+  //pipes: [FilterPipe]
 })
 export class EvenementComponent implements OnInit {
   events: Evenement = new Evenement();

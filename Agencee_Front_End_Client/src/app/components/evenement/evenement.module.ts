@@ -6,6 +6,7 @@ import { NgModule } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { SearchFilterPipe } from "./filter-pipe";
 import { ClickOutsideDirective } from "../../dropdown.directive";
+import { FilterPipe } from './filter.pipe';
 
 
 
@@ -17,7 +18,7 @@ import { ClickOutsideDirective } from "../../dropdown.directive";
     SharedModule,
     
   ],
-  declarations: [EvenementComponent,ClickOutsideDirective,SearchFilterPipe]
+  declarations: [EvenementComponent,ClickOutsideDirective,SearchFilterPipe, FilterPipe]
   //exports: [SearchFilterPipe]
 })
 export class EvenementModule { }
